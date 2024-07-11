@@ -18,3 +18,6 @@ Open http://localhost:3000 to view the app in the browser.
 The homepage will show a list of all the examples and you can click on each example to view the result of the code.
 
 You can make PRs to add new examples or improve the existing ones.
+
+
+# npm install react@rc react-dom@rc
