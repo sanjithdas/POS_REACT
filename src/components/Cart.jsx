@@ -8,6 +8,8 @@ import { createOrder } from '../features/order/OrderSlice';
 const Cart = () => {
   const dispatch = useDispatch();
   const cart = useSelector(selectAllCartItems);
+  cart['customer_name'] = "Giri";
+  cart['customer_email'] = "girish@gmail.com";
   console.log(cart);
   return (
     <div className="w-1/2 bg-white p-4 shadow-lg">
