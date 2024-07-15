@@ -21,6 +21,8 @@ const cartSlice = createSlice({
       } else {
         cartAdapter.addOne(state, { ...action.payload, quantity: 1 });
       }
+      console.log("state", state);
+
     },
     removeFromCart: cartAdapter.removeOne,
     updateQuantity: (state, action) => {

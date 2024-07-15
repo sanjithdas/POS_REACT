@@ -1,5 +1,5 @@
 import { createSlice, createEntityAdapter, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from '../../api/axios'; 
+import axios from '../../api/axios';
 
 // Create an entity adapter for the order
 const orderAdapter = createEntityAdapter({
@@ -9,18 +9,35 @@ const orderAdapter = createEntityAdapter({
 // Create an async thunk for creating an order
 export const createOrder = createAsyncThunk(
   'order/createOrder',
-  async (orderData) => {
+  async ({ customerName, customerEmail, products }) => {
     try {
-      const response = await axios.post('/orders', orderData); // Send orderData in POST request
-      if (response.data && response.data.id) { // Check for a valid response
-        return response.data; // Return the created order data
+      console.log('Products:', products);
+
+      const productsData = products.map(product => ({
+        id: product.id,
+        quantity: product.quantity
+      }));
+
+      const requestBody = {
+        customer_name: customerName,
+        customer_email: customerEmail,
+        products: productsData
+      };
+
+      console.log('Request body:', requestBody);
+
+      const response = await axios.post('/orders', requestBody);
+
+      if (response.data && response.data.id) {
+        console.log('Response data:', response.data);
+        return response.data;
       } else {
-        console.error('Invalid response data:', response.data);
+        console.log('Invalid response data:', response.data);
         throw new Error('Invalid response data');
       }
     } catch (error) {
-      console.error('Error creating order:', error);
-      throw error; // Rethrow the error to be caught by the component
+      console.log('Error creating order:', error);
+      throw error;
     }
   }
 );
