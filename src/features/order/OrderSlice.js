@@ -42,6 +42,44 @@ export const createOrder = createAsyncThunk(
   }
 );
 
+
+// update order
+
+export const updateOrder = createAsyncThunk(
+  'order/updateOrder',
+  async ({ customerName, customerEmail, products, id} ) => {
+    try {
+      console.log('Orderid:', id);
+
+      const productsData = products.map(product => ({
+        id: product.id,
+        quantity: product.quantity
+      }));
+
+      const requestBody = {
+        customer_name: customerName,
+        customer_email: customerEmail,
+        products: productsData
+      };
+
+      console.log('Request body:', id);
+
+      const response = await axios.put(`/orders/${id}`, requestBody);
+
+      if (response.data && response.data.id) {
+        console.log('Response data:', response.data);
+        return response.data;
+      } else {
+        console.log('Invalid response data:', response.data);
+        throw new Error('Invalid response data');
+      }
+    } catch (error) {
+      console.log('Error creating order:', error);
+      throw error;
+    }
+  }
+);
+
 // Create the initial state using the adapter's getInitialState method
 const initialState = orderAdapter.getInitialState();
 

@@ -1,3 +1,110 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+body{
+  position: relative;
+  background-color:aliceblue;
+  padding: 1rem;
+}
+
+.pos-logo{
+  transition: transform 0.5s ease-in-out , shadow 0.5s ease-in-out;
+}
+
+.pos-logo:hover{
+  transform: scale(2);
+  box-shadow: 0 10 10 rgb(242, 213, 245);
+  filter: brightness(150%);
+}
+
+.products-cart-wrapper {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .for-bgcolor{
+    background-color: rgb(64 42 78 / 68%);
+    border-radius: 7px;
+    box-shadow: 0 10px 10px rgb(242, 213, 245);
+  }
+  main{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+  }
+  .width-for{
+    width:60%;
+   
+  }
+  for-product{
+    text-align: left;
+    padding: 20px;
+    align-content: center !important;
+  }
+  .for-align{
+      width: 300px;
+      align-content: center;
+  }
+
+  .cart-header{
+    letter-spacing: 6px;
+  }
+  .for-cart{
+     text-align: right;
+    width: 200px;
+  }
+  .shadow-lg{
+    border-radius: 7px;
+  }
+  .for-button{
+    padding: 20px;
+  }
+  footer{
+    margin-top: 5rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .for-align img{
+    transition: transform 0.5s ease-in-out , box-shadow 0.5s ease-in-out;
+  }
+
+  .for-align img:hover{
+    transform: scale(3);
+    box-shadow: 
+    1px 1px 2px rgb(64 42 78 / 68%),   /* Red shadow */
+    1px 1px 2px rgba(128, 74, 245, 0.5),  /* Green shadow */
+    1px 1px 2px rgba(240, 23, 193, 0.5);  /* Blue shadow */
+  }
+
+  .search-prod{
+    border: 1px solid transparent; /* Add a default border */
+    transition: background-color 0.5s ease-in-out, border 0.5s ease-in-out;
+ 
+  }
+  .search-prod:hover{
+    
+    border: 2px solid green;
+    background-color: rgb(246, 245, 240); 
+  }
+.add-to-cart{
+  margin-top: 2rem;
+  border: 1px solid transparent; /* Add a default border */
+  transition: background-color 0.5s ease-in-out, border 0.5s ease-in-out;
+  padding: 1rem !important;
+}
+
+.add-to-cart:hover{
+    
+  border: 1px solid rgb(231, 225, 231);
+  background-color: rgb(64 42 78 / 68%); 
+}
+
+  
+  

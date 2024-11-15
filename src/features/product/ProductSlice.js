@@ -1,45 +1,60 @@
-import { createSlice, createAsyncThunk, createEntityAdapter } from '@reduxjs/toolkit';
-import axios from '../../api/axios'; // Adjust import path as per your project structure
+import {
+  createSlice,
+  createAsyncThunk,
+  createEntityAdapter,
+} from "@reduxjs/toolkit";
+import axios from "../../api/axios"; // Adjust import path as needed
 
 const productsAdapter = createEntityAdapter({
-  selectId: product => product.id,
+  selectId: (product) => product.id,
 });
 
+// Fetch products thunk with optional search query and page
 export const fetchProducts = createAsyncThunk(
-    'products/fetchProducts', // Action type prefix
-    async () => {
-      try {
-        const response = await axios.get('/products'); // Adjust URL based on your backend
-        if (response.data && Array.isArray(response.data.data)) {
-          return response.data.data.filter(product => product && product.id); // Filter out invalid data
-        } else {
-          console.error('Invalid response data:', response.data);
-          throw new Error('Invalid response data');
-        }
-      } catch (error) {
-        console.error('Error fetching products:', error);
-        throw error; // Rethrow the error to be caught by the component
+  "products/fetchProducts",
+  async ({ searchQuery = "", page = 1 }, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`/products`, {
+        params: {
+          search: searchQuery,
+          page, // Pass the page number to the API
+        },
+      });
+      console.log("first", response);
+      // Return products and pagination info
+      if (response.data && Array.isArray(response.data.data)) {
+        return {
+          products: response.data.data,
+          pagination: {
+            current_page: response.data.current_page,
+            last_page: response.data.last_page,
+            total: response.data.total,
+          },
+        };
+      } else {
+        return rejectWithValue("Invalid response data");
       }
+    } catch (error) {
+      return rejectWithValue(error.message);
     }
-  );
+  }
+);
+
 
 const initialState = productsAdapter.getInitialState({
   loading: false,
   error: null,
+  pagination: { current_page: 1, last_page: 1, total: 0 }, // Add pagination info in the state
 });
 
 const productSlice = createSlice({
-  name: 'products',
+  name: "products",
   initialState,
   reducers: {
-    // Reducer to add a single product to the state
     productAdded: productsAdapter.addOne,
-    
-    // Reducer to update a product in the state
     productUpdated: productsAdapter.updateOne,
-    
-    // Reducer to remove a product from the state
     productRemoved: productsAdapter.removeOne,
+    productsCleared: productsAdapter.removeAll, // Clear products when starting new search
   },
   extraReducers: (builder) => {
     builder
@@ -50,18 +65,26 @@ const productSlice = createSlice({
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        productsAdapter.setAll(state, action.payload); // Update entities in state
+        productsAdapter.setAll(state, action.payload.products); // Set new products in state
+        state.pagination = action.payload.pagination; // Update pagination in state
       })
       .addCase(fetchProducts.rejected, (state, action) => {
-        console.log("dfsdfd")
         state.loading = false;
-        state.error = action.error.message || 'Failed to fetch products';
+        if (action.payload !== "Request aborted") {
+          state.error = action.payload || "Failed to fetch products";
+        }
       });
   },
 });
 
-export const { productAdded, productUpdated, productRemoved } = productSlice.actions;
+export const { productAdded, productUpdated, productRemoved, productsCleared } =
+  productSlice.actions;
 
-export const { selectAll: selectAllProducts } = productsAdapter.getSelectors(state => state.products);
+export const { selectAll: selectAllProducts } = productsAdapter.getSelectors(
+  (state) => state.products
+);
+export const selectProductsLoading = (state) => state.products.loading;
+export const selectProductsError = (state) => state.products.error;
+export const selectProductsPagination = (state) => state.products.pagination;
 
 export default productSlice.reducer;
