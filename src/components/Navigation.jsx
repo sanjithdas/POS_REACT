@@ -5,10 +5,13 @@ const Navigation = () => {
     <>
         <ul className='flex flex-wrap space-x-4'>
           <li>
-            <NavLink to="/products">Home</NavLink>
+            <NavLink to="/">Home</NavLink>
           </li>
           <li>
             <NavLink to="/products">Products</NavLink>
+          </li>
+          <li>
+            
           </li>
           <li>
             <NavLink to="/orders">Orders</NavLink>

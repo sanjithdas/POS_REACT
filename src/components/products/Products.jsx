@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts, selectAllProducts, selectProductsLoading, selectProductsError, selectProductsPagination } from '../../features/product/ProductSlice';
 import { addToCart } from '../../features/cart/CartSlice';
 import loadingStatus from "../../../public/loading.webp";
-
+import { useNavigate } from "react-router-dom";
+import { selectAuth } from "../../features/login/AuthSlice";
 const Products = () => {
   const dispatch = useDispatch();
   
@@ -12,7 +13,9 @@ const Products = () => {
   const pagination = useSelector(selectProductsPagination); // Get pagination info from the state
   const loading = useSelector(selectProductsLoading);
   const error = useSelector(selectProductsError);
-  
+  const { token } = useSelector(selectAuth);
+    const { user } = useSelector(selectAuth);
+    console.log("totken is ",token,user); 
   const [currentPage, setCurrentPage] = useState(1);
 
   // Fetch products when component loads or when the page changes

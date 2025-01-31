@@ -60,6 +60,7 @@ body{
   }
   .shadow-lg{
     border-radius: 7px;
+    height: fit-content;
   }
   .for-button{
     padding: 20px;
@@ -105,6 +106,447 @@ body{
   border: 1px solid rgb(231, 225, 231);
   background-color: rgb(64 42 78 / 68%); 
 }
+
+/* For payment modal */
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+ 
+  overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  max-height: 85vh;
+  background-color: #fff;
+  padding: 20px;
+  
+  border-radius: 5px;
+  width: 80%;
+  max-width: 500px;
+  position: relative;
+  overflow-y: auto; 
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+
+/* Stripe payment form */
+
+.payment-container {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 400px;
+  max-width: 100%;
+}
+
+.payment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.payment-header h2 {
+  font-weight: 700;
+  font-size: 1.5em;
+}
+.payment-input {
+  margin-bottom: 15px;
+}
+
+.payment-input label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.input-field {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 1em;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input-field:focus {
+  border-color: #0077ff;
+}
+
+.card-element-wrapper {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.pay-button {
+  background-color: #0077ff;
+  color: #ffffff;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  width: 100%;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.pay-button:hover {
+  background-color: #005bb5;
+}
+
+.payment-status {
+  margin-top: 15px;
+  font-weight: 500;
+  color: #ff4c4c;
+}
+
+ 
+
+.barcode-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.generate-barcode-button {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+
+/* login page */
+
+/* General container styling */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+ 
+  
+  width:100%;
+}
+
+/* Card styling */
+.login-card {
+  width: 400px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Title and subtitle */
+.login-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.login-subtitle {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Form styling */
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Button styling */
+.login-button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color:rgb(64 42 78 / 68%);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.login-button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+/* Error message styling */
+.error-message {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #ff0000;
+}
+
+
+/* Registration */
+
+/* General container styling */
+.registration-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f7f9fc;
+  width:100%;
+}
+
+/* Card styling */
+.registration-card {
+  width: 400px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Title styling */
+.registration-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Form styling */
+.registration-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Button styling */
+.registration-button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.registration-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.registration-button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+/** logout in the Header */
+
+/* styles.css */
+.logout-button {
+  
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: rgb(64 42 78 / 68%);
+}
+
+.logout-button:hover {
+  background-color: #4d0a0a;
+}
+
+.nav-header{
+  display: flex;
+   
+  justify-content: space-between; 
+}
+
+/* login , reset , new user */
+
+/* src/styles.css */
+.login-page,
+.reset-password-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+}
+
+.login-card,
+.reset-password-card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.reset-password-page{
+  width:100%;
+}
+
+.login-title,
+.reset-password-title {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.btn-reset-password{
+  background-color: rgb(64 42 78 / 68%);;
+  
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button {
+  
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  
+  border-radius: 4px;
+  background-color: rgb(64 42 78 / 68%);;
+}
+
+ 
+
+.error-message {
+  color: red;
+  font-size: 0.875em;
+  margin-top: 5px;
+}
+
+.login-links {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.login-links .link  {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.user-logged{
+  width:auto;
+  display: flex;
+  gap: 20px;
+  align-items: center; 
+  flex-wrap: wrap;
+}
+
+.logout{
+  
+  display: flex;
+  justify-content: end;
+}
+
+
+ 
+
+
+
 
   
   
